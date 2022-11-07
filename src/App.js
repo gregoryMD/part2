@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import personService from "./services/persons";
 import Display from "./Display";
 import Form from "./Form";
 import Filter from "./Filter";
+import Notification from "./Notification";
+import "./index.css";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -10,11 +12,10 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [showAll, setShowAll] = useState(true);
   const [newSearch, setNewSearch] = useState("");
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/persons")
-      .then((response) => setPersons(response.data));
+    personService.getAll().then((initialPersons) => setPersons(initialPersons));
   }, []);
 
   const addPerson = (event) => {
@@ -22,20 +23,28 @@ const App = () => {
     const person = { name: newName, number: newNumber };
     const stringed = [];
     persons.forEach((item) => stringed.push(JSON.stringify(item)));
+
     if (stringed.includes(JSON.stringify(person))) {
-      window.alert(`${newName} is already added to the phonebook`);
+      setMessage(`${newName} is already added to the phonebook`);
       setNewName("");
       setNewNumber("");
     } else {
-      setPersons(persons.concat(person));
-      setNewName("");
-      setNewNumber("");
+      personService.addNew(person).then((newPerson) => {
+        setPersons(persons.concat(newPerson));
+        setNewName("");
+        setNewNumber("");
+        setMessage(
+          `Success! ${newPerson.name} has been added to the phonebook!`
+        );
+        setTimeout(() => {
+          setMessage(null);
+        }, 3000);
+      });
     }
   };
 
   const handleSearch = (event) => {
     setNewSearch(event.target.value);
-    console.log(newSearch);
   };
 
   const handleNewName = (event) => {
@@ -47,15 +56,15 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h2>Phonebook</h2>
+    <div className="app">
+      <h1>Phonebook</h1>
+      <Notification message={message} />
       <Filter
         showAll={showAll}
         newSearch={newSearch}
         handleSearch={handleSearch}
         setShowAll={setShowAll}
       />
-      <h2>add new</h2>
       <Form
         newName={newName}
         newNumber={newNumber}
@@ -63,8 +72,13 @@ const App = () => {
         handleNewName={handleNewName}
         handleNewNumber={handleNewNumber}
       />
-      <h2>Numbers</h2>
-      <Display persons={persons} showAll={showAll} newSearch={newSearch} />
+      <Display
+        persons={persons}
+        showAll={showAll}
+        newSearch={newSearch}
+        setPersons={setPersons}
+        setMessage={setMessage}
+      />
     </div>
   );
 };
