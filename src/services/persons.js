@@ -21,4 +21,4 @@ const updatePers = (id, newObj) => {
   return req.then((res) => res.data);
 };
 
-export default { getAll, addNew, deletePers };
+export default { getAll, addNew, deletePers, updatePers };
