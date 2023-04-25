@@ -57,7 +57,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>Phonebook test</h1>
+      <h1>Phonebook</h1>
       <Notification message={message} />
       <Filter
         showAll={showAll}

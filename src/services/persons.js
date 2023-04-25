@@ -16,4 +16,9 @@ const deletePers = (id) => {
   return request.then((response) => response.data);
 };
 
+const updatePers = (id, newObj) => {
+  const req = axios.put(`${baseUrl}/${id}`.newObj);
+  return req.then((res) => res.data);
+};
+
 export default { getAll, addNew, deletePers };
