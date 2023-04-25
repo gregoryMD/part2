@@ -17,7 +17,8 @@ const deletePers = (id) => {
 };
 
 const updatePers = (id, newObj) => {
-  const req = axios.put(`${baseUrl}/${id}`.newObj);
+  console.log(`url: ${baseUrl}/${id}`, newObj);
+  const req = axios.put(`${baseUrl}/${id}`, newObj);
   return req.then((res) => res.data);
 };
 

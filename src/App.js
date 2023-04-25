@@ -21,19 +21,20 @@ const App = () => {
   const addPerson = (event) => {
     event.preventDefault();
     const person = { name: newName, number: newNumber };
-    const stringed = [];
-    persons.forEach((item) => stringed.push(JSON.stringify(item)));
 
-    if (stringed.includes(JSON.stringify(person))) {
-      personsService.updatePers().then((updatedPers) => {
-        setPersons(
-          persons.map((person) =>
-            person.id === updatedPers.id ? updatedPers : person
-          )
-        );
-        setNewName("");
-        setNewNumber("");
-      });
+    if (persons.some((existingPerson) => existingPerson.name === person.name)) {
+      const existingPerson = persons.find((p) => p.name === person.name);
+      personService
+        .updatePers(existingPerson.id, person)
+        .then((updatedPers) => {
+          setPersons(
+            persons.map((person) =>
+              person.id === updatedPers.id ? updatedPers : person
+            )
+          );
+          setNewName("");
+          setNewNumber("");
+        });
     } else {
       personService.addNew(person).then((newPerson) => {
         setPersons(persons.concat(newPerson));
