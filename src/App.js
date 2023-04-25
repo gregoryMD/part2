@@ -25,9 +25,15 @@ const App = () => {
     persons.forEach((item) => stringed.push(JSON.stringify(item)));
 
     if (stringed.includes(JSON.stringify(person))) {
-      setMessage(`${newName} is already added to the phonebook`);
-      setNewName("");
-      setNewNumber("");
+      personsService.updatePers().then((updatedPers) => {
+        setPersons(
+          persons.map((person) =>
+            person.id === updatedPers.id ? updatedPers : person
+          )
+        );
+        setNewName("");
+        setNewNumber("");
+      });
     } else {
       personService.addNew(person).then((newPerson) => {
         setPersons(persons.concat(newPerson));
