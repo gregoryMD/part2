@@ -5,10 +5,10 @@ export default function Filter({
   showAll,
 }) {
   return (
-    <div>
+    <div className="filter">
       <h2>Filter by Name</h2>
-      <input value={newSearch} onChange={handleSearch}></input>
       <div>
+        <input value={newSearch} onChange={handleSearch}></input>
         <button className="button" onClick={() => setShowAll(!showAll)}>
           filter
         </button>

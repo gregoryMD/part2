@@ -1,12 +1,12 @@
 export default function Person({ name, number, deletePerson }) {
   return (
-    <div>
-      {name}
+    <div className="person">
+      <p>{name}</p>
       <button className="pers-button" onClick={deletePerson}>
         Delete
       </button>
       <br></br>
-      {number}
+      <p>{number}</p>
     </div>
   );
 }

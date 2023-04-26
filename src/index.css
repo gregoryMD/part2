@@ -21,10 +21,26 @@ h2 {
   margin: 5px 0px 0px 0px;
 }
 
-.pers-button {
-  margin: 0px 10px 0px 0px;
-}
-
 .form {
   order: -1;
+  padding: 10px;
+}
+
+.filter {
+  padding: 10px;
+}
+
+.numbers {
+  width: 30%;
+  padding: 10px;
+}
+
+.person {
+  justify-content: space-between;
+  display: flex;
+}
+
+.pers-button {
+  order: 1;
+  margin: 0px 10px 0px 0px;
 }
