@@ -19,8 +19,8 @@ export default function Display({ persons, showAll, newSearch, setMessage }) {
   };
 
   return (
-    <div>
-      <h2>Numbers</h2>
+    <div className="numbers">
+      <h2>Contacts</h2>
       {searchFilter.map((each) => (
         <Person
           key={each.id}

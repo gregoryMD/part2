@@ -6,7 +6,7 @@ export default function Filter({
 }) {
   return (
     <div>
-      <h2>filter by name</h2>
+      <h2>Filter by Name</h2>
       <input value={newSearch} onChange={handleSearch}></input>
       <div>
         <button className="button" onClick={() => setShowAll(!showAll)}>

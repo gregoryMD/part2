@@ -6,8 +6,8 @@ export default function Form({
   addPerson,
 }) {
   return (
-    <div>
-      <h2>add new</h2>
+    <div className="form">
+      <h2>Add a New Contact</h2>
       <form onSubmit={addPerson}>
         <div>
           name: <input value={newName} onChange={handleNewName} />
