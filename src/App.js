@@ -37,6 +37,9 @@ const App = () => {
         })
         .catch((error) => {
           setMessage(`Error: ${error.response.data.error}`);
+          setTimeout(() => {
+            setMessage(null);
+          }, 3000);
         });
     } else {
       personService
@@ -54,6 +57,9 @@ const App = () => {
         })
         .catch((error) => {
           setMessage(`Error: ${error.response.data.error}`);
+          setTimeout(() => {
+            setMessage(null);
+          }, 3000);
         });
     }
   };
@@ -72,7 +78,9 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>myPhonebook</h1>
+      <h1>
+        myPhonebook <i>express</i>
+      </h1>
       <Notification message={message} />
       <Filter
         showAll={showAll}
