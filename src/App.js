@@ -34,19 +34,27 @@ const App = () => {
           );
           setNewName("");
           setNewNumber("");
+        })
+        .catch((error) => {
+          setMessage(`Error: ${error.response.data.error}`);
         });
     } else {
-      personService.addNew(person).then((newPerson) => {
-        setPersons(persons.concat(newPerson));
-        setNewName("");
-        setNewNumber("");
-        setMessage(
-          `Success! ${newPerson.name} has been added to the phonebook!`
-        );
-        setTimeout(() => {
-          setMessage(null);
-        }, 3000);
-      });
+      personService
+        .addNew(person)
+        .then((newPerson) => {
+          setPersons(persons.concat(newPerson));
+          setNewName("");
+          setNewNumber("");
+          setMessage(
+            `Success! ${newPerson.name} has been added to the phonebook!`
+          );
+          setTimeout(() => {
+            setMessage(null);
+          }, 3000);
+        })
+        .catch((error) => {
+          setMessage(`Error: ${error.response.data.error}`);
+        });
     }
   };
 
