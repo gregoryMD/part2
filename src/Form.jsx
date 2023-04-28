@@ -11,12 +11,15 @@ export default function Form({
       <form onSubmit={addPerson}>
         <div>
           <div>
-            <label htmlFor="name">name: </label>
-            <input id="name" value={newName} onChange={handleNewName} />
+            <label htmlFor="name">
+              name: <input id="name" value={newName} onChange={handleNewName} />
+            </label>
           </div>
           <div>
-            <label htmlFor="number">number: </label>
-            <input id="number" value={newNumber} onChange={handleNewNumber} />
+            <label htmlFor="number">
+              number:
+              <input id="number" value={newNumber} onChange={handleNewNumber} />
+            </label>
           </div>
         </div>
         <button className="button" type="submit">

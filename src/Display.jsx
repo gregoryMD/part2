@@ -9,6 +9,7 @@ export default function Display({ persons, showAll, newSearch, setMessage }) {
       );
 
   const deletePerson = (id) => {
+    // eslint-disable-next-line no-alert
     if (window.confirm("Please click ok to delete this person")) {
       personService.deletePers(id);
       setMessage(`Goodbye! That person has been deleted from the phonebook`);

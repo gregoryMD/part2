@@ -6,7 +6,7 @@ import Filter from "./Filter";
 import Notification from "./Notification";
 import "./index.css";
 
-const App = () => {
+function App() {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
@@ -28,8 +28,8 @@ const App = () => {
         .updatePers(existingPerson.id, person)
         .then((updatedPers) => {
           setPersons(
-            persons.map((person) =>
-              person.id === updatedPers.id ? updatedPers : person
+            persons.map((pers) =>
+              pers.id === updatedPers.id ? updatedPers : pers
             )
           );
           setNewName("");
@@ -104,6 +104,6 @@ const App = () => {
       />
     </div>
   );
-};
+}
 
 export default App;
