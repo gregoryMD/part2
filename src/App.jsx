@@ -34,6 +34,10 @@ function App() {
           );
           setNewName("");
           setNewNumber("");
+          setMessage(`Success! ${updatedPers.name} has been updated!`);
+          setTimeout(() => {
+            setMessage(null);
+          }, 3000);
         })
         .catch((error) => {
           setMessage(`Error: ${error.response.data.error}`);
