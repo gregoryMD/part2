@@ -4,8 +4,9 @@ export default function Notification({ message }) {
   }
 
   const messageStyle = {
-    color: "red",
-    background: "lightgrey",
+    order: "-1",
+    color: "rgb(255, 99, 80)",
+    background: "rgb(244, 245, 240)",
     fontSize: "20px",
     borderStyle: "solid",
     borderRadius: "5px",
