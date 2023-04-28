@@ -24,27 +24,34 @@ function App() {
 
     if (persons.some((existingPerson) => existingPerson.name === person.name)) {
       const existingPerson = persons.find((p) => p.name === person.name);
-      personService
-        .updatePers(existingPerson.id, person)
-        .then((updatedPers) => {
-          setPersons(
-            persons.map((pers) =>
-              pers.id === updatedPers.id ? updatedPers : pers
-            )
-          );
-          setNewName("");
-          setNewNumber("");
-          setMessage(`Success! ${updatedPers.name} has been updated!`);
-          setTimeout(() => {
-            setMessage(null);
-          }, 3000);
-        })
-        .catch((error) => {
-          setMessage(`Error: ${error.response.data.error}`);
-          setTimeout(() => {
-            setMessage(null);
-          }, 3000);
-        });
+      if (
+        // eslint-disable-next-line no-alert
+        window.confirm(
+          `${existingPerson.name} is already added to the phonebook, replace the old number with a new one?`
+        )
+      ) {
+        personService
+          .updatePers(existingPerson.id, person)
+          .then((updatedPers) => {
+            setPersons(
+              persons.map((pers) =>
+                pers.id === updatedPers.id ? updatedPers : pers
+              )
+            );
+            setNewName("");
+            setNewNumber("");
+            setMessage(`Success! ${updatedPers.name} has been updated!`);
+            setTimeout(() => {
+              setMessage(null);
+            }, 3000);
+          })
+          .catch((error) => {
+            setMessage(`Error: ${error.response.data.error}`);
+            setTimeout(() => {
+              setMessage(null);
+            }, 3000);
+          });
+      }
     } else {
       personService
         .addNew(person)
